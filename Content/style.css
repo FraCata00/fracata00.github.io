@@ -339,6 +339,7 @@ img
     flex-direction: column;
     font-weight: 300;
     text-decoration: none;
+    transition: 0.3s;
 }
 .contactInfoBx .box .textMail p a:hover
 {

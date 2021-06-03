@@ -7,6 +7,14 @@
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
+canvas 
+{
+    display: block;
+    background: none;
+    position:absolute;
+    top:0;  
+    left:0;
+}
 section
 {
     padding: 100px;

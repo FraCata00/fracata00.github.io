@@ -23,7 +23,7 @@ section
 {
     position: relative;
     min-height: 100vh;
-    /*background-color: #121212;*/
+    background: canvas;
     background-size: cover;
     background-position: right;
     display: flex;

@@ -113,7 +113,7 @@ header ul li a
     margin: 0 15px;
     color: #FFF;
     text-decoration: none;
-    transition: 0,3s;
+    transition: 0.3s;
 }
 header ul li a:hover
 {

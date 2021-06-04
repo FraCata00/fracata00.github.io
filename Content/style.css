@@ -230,12 +230,15 @@ img
     max-width: 100%;
     filter: invert(1);
 }
-.languages .content .languagesBx a img:hover
-{
-    filter: none;
+.languages .content .languagesBx:hover
+{   
     background: #FFF;
     transition: 0.2s ease-in-out;
     transform:scale(1.1);
+}
+.languages .content .languagesBx img:hover
+{
+    filter: none;
 }
 .contact
 {

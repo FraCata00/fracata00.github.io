@@ -273,6 +273,7 @@ img
     color: #FFF;
     border-radius: 15px;
     resize: none;
+    transition: 0.3s;
 }
 .formBx form textarea
 {

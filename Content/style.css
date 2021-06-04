@@ -230,7 +230,7 @@ img
     max-width: 100%;
     filter: invert(1);
 }
-.languages .content .languages a img:hover
+.languages .content .languagesBx a img:hover
 {
     filter: none;
     background: #FFF;

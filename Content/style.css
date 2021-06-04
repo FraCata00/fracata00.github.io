@@ -442,13 +442,16 @@ input[type=text] {
   margin: 3px 0;
   display: block;
 }
-
+.contentBxGitHub
+{
+    padding-right: 0px;
+}
 /* Page content */
-.github .content .contactBx .w50 .container .content 
+.github .content .contentBxGitHub .w50 .container .content 
 {
   padding: 100px;
 }
-.github .content .contactBx .w50 .container .content a img:hover
+.github .content .contentBxGitHub .w50.container .content a img:hover
 {
     transition: 0.2s ease-in-out;
     transform: scale(1.1);

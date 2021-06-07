@@ -494,7 +494,7 @@ input[type=text] {
     {
         width: 40px;
         height: 40px;
-        background: url('/Icon/menu.svg');
+        background-image: url('/Icon/menu.svg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: 30px;
@@ -504,7 +504,7 @@ input[type=text] {
     {
         width: 40px;
         height: 40px;
-        background: url('/Icon/close.svg');
+        background-image: url("/Icon/close.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 25px;
@@ -514,7 +514,7 @@ input[type=text] {
     {
         filter: invert(1);
     }
-    selection
+    section
     {
         padding: 100px 50px;
     }
@@ -535,5 +535,51 @@ input[type=text] {
         margin-top: 10px;
         padding: 10px 20px;
         font-size: 16px;
+    }
+    .heading h2
+    {
+        font-size: 24px;
+    }
+    .contentBx h3
+    {
+        font-size: 20px;
+    }
+    .content
+    {
+        flex-direction: column;
+    }
+    .w50
+    {
+        margin-bottom: 20px;
+    }
+    .works .content .worksBx
+    {
+        margin: 10px;
+    }
+    .languages .content .languagesBx
+    {
+        width: 100%;
+        padding: 10px;
+    }
+    .contactInfo
+    {
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 600px)
+{
+    header,
+    header.sticky
+    {
+        padding: 20px 20px;
+    }
+    .banner
+    {
+        padding: 150px 20px 100px;
+    }
+    section
+    {
+        padding: 100px 20px;
     }
 }

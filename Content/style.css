@@ -463,6 +463,8 @@ input[type=text] {
 .github .content
 {
     align-items: center;
+    display: flex;
+    justify-content: center;
 }
 /* Page content */
 

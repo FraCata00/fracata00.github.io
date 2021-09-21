@@ -474,6 +474,7 @@ input[type=text] {
 .github .content .container
 {
     align-items: center;
+    justify-content: center;
 }
 /*Responsive*/
 

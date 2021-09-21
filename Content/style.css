@@ -457,6 +457,10 @@ input[type=text] {
     transition: 0.2s ease-in-out;
     transform: scale(1.1);
 }
+.github .content .container
+{
+    align-items: center;
+}
 /*Responsive*/
 @media (max-width: 991px) 
 {

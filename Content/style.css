@@ -460,7 +460,10 @@ input[type=text] {
     padding-right: 0px;
 }
 
-
+.github .content
+{
+    align-items: center;
+}
 /* Page content */
 
 .github .content .contentBxGitHub .w50 .container .content {

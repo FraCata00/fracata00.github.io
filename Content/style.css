@@ -471,15 +471,10 @@ input[type=text] {
     transition: 0.2s ease-in-out;
     transform: scale(1.1);
 }
-<<<<<<< HEAD
 .github .content .container
 {
     align-items: center;
 }
-=======
-
-
->>>>>>> fb936e0f7f94d11e62c37a322c9e9391bbf2373b
 /*Responsive*/
 
 @media (max-width: 991px) {

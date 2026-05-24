@@ -193,6 +193,14 @@ export const contacts = [
     label: "FraCata00",
     href: "https://pypi.org/user/FraCata00/",
   },
-  { kind: "email", label: "francy111200@gmail.com", href: null },
-  { kind: "linkedin", label: "/in/francesco-cataldo", href: null },
+  {
+    kind: "email",
+    label: "francy111200@gmail.com",
+    href: "mailto:francy111200@gmail.com",
+  },
+  {
+    kind: "linkedin",
+    label: "/in/francesco-cataldo",
+    href: "https://www.linkedin.com/in/francesco-cataldo/",
+  },
 ];

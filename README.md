@@ -47,8 +47,6 @@ All copy lives in [`src/data/portfolio.js`](src/data/portfolio.js): hero text,
 case studies, toolbox, open-source cards and contacts. Components only render
 that data, so updating the site is a content edit, not a code change.
 
-> Two placeholders are intentionally left for you to fill in: the **email** and
-> **LinkedIn** entries in the `contacts` array (marked with a ✎ in the UI).
 
 ## Deployment
 

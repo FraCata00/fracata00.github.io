@@ -26,7 +26,7 @@ import { contacts } from '../data/portfolio'
 
 <style scoped>
 .foot {
-  padding: 62px 0 96px;
+  padding: clamp(40px, 8vw, 62px) 0 clamp(56px, 10vw, 96px);
   border-bottom: none;
 }
 
@@ -73,5 +73,10 @@ a.contact-link:hover {
   font-size: 13px;
   letter-spacing: 0.05em;
   font-family: 'JetBrains Mono', monospace;
+}
+
+@media (max-width: 600px) {
+  .colophon { flex-direction: column; align-items: center; text-align: center; gap: 6px; margin-top: 28px; }
+  .contact-link { font-size: 14px; padding: 16px 0; }
 }
 </style>

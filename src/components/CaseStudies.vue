@@ -1,5 +1,8 @@
 <script setup>
+import { useDisplay } from 'vuetify'
 import { caseStudies } from '../data/portfolio'
+
+const { mobile } = useDisplay()
 </script>
 
 <template>
@@ -13,7 +16,7 @@ import { caseStudies } from '../data/portfolio'
       align="start"
       line-color="#d8d1c2"
       truncate-line="both"
-      density="comfortable"
+      :density="mobile ? 'compact' : 'comfortable'"
     >
       <v-timeline-item
         v-for="c in caseStudies"
@@ -135,8 +138,11 @@ figcaption {
   border: 1px solid var(--rule);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; gap: 2px; }
   .grid .k { padding-top: 12px; }
+  pre { font-size: 12px; padding: 12px 14px; }
+  .ctx { font-size: 16px; }
+  .chips { gap: 6px; }
 }
 </style>

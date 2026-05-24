@@ -23,8 +23,8 @@ import { profile, heroMeta } from '../data/portfolio'
 </template>
 
 <style scoped>
-.hero { padding: 64px 0 26px; border-bottom: 1px solid var(--rule); }
-.hero-title { font-size: clamp(40px, 7vw, 74px); margin-bottom: 22px; }
+.hero { padding: clamp(36px, 8vw, 64px) 0 26px; border-bottom: 1px solid var(--rule); }
+.hero-title { font-size: clamp(34px, 7vw, 74px); margin-bottom: 22px; }
 .meta {
   display: flex;
   flex-wrap: wrap;

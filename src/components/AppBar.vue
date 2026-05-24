@@ -28,6 +28,7 @@ import { profile } from '../data/portfolio'
   font-weight: 500;
   font-size: 21px;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .otw .dot {
@@ -38,5 +39,10 @@ import { profile } from '../data/portfolio'
   background: var(--accent);
   margin-right: 6px;
   vertical-align: middle;
+}
+
+@media (max-width: 480px) {
+  .brand { font-size: 17px; }
+  .otw { display: none; }
 }
 </style>

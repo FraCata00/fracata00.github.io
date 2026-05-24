@@ -176,6 +176,13 @@ export const openSource = [
     title: "django-istat-deploy",
     tagline: "Live REST API · deployed on Koyeb",
     text: "The package above, wrapped as a public REST API and deployed — the full loop, from a library on PyPI to a running, reachable service.",
+    actions: [
+      {
+        label: "api",
+        href: "https://djangoistat.koyeb.app/",
+        icon: mdiLanguagePython,
+      },
+    ],
   },
 ];
 

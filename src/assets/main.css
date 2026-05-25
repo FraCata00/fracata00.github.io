@@ -30,8 +30,8 @@
   color-scheme: dark;
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
-body { overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { overflow-x: clip; }
 ::selection { background: var(--accent); color: var(--paper); }
 
 /* Keep the editorial identity on top of Vuetify's surfaces */
@@ -41,7 +41,7 @@ body { overflow-x: hidden; }
   color: var(--ink);
   line-height: 1.65;
   font-size: 17px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* faint engineering-paper grid, faded out toward the bottom */

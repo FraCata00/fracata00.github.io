@@ -41,6 +41,7 @@ body { overflow-x: hidden; }
   color: var(--ink);
   line-height: 1.65;
   font-size: 17px;
+  overflow-x: hidden;
 }
 
 /* faint engineering-paper grid, faded out toward the bottom */

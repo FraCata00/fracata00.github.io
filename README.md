@@ -1,5 +1,7 @@
 # Portfolio — Francesco
 
+![Preview](preview.png)
+
 Personal engineering portfolio built as a static single-page site with
 **Vue 3 + Vuetify 3 + Tailwind CSS**, bundled by **Vite**, and shipped to
 **GitHub Pages** via **GitHub Actions**.

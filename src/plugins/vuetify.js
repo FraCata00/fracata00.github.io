@@ -24,6 +24,17 @@ export default createVuetify({
           'on-surface': '#23201b',
         },
       },
+      'editorial-dark': {
+        dark: true,
+        colors: {
+          background: '#1c1a17',
+          surface: '#242119',
+          primary: '#d4614a',
+          secondary: '#4da585',
+          'on-background': '#e8e2d9',
+          'on-surface': '#e8e2d9',
+        },
+      },
     },
   },
 })

@@ -1,6 +1,9 @@
 <script setup>
-import { mdiGithub, mdiPasta } from '@mdi/js'
+import { mdiGithub, mdiPasta, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js'
 import { profile } from '../data/portfolio'
+import { useAppTheme } from '../composables/useAppTheme'
+
+const { isDark, toggle } = useAppTheme()
 </script>
 
 <template>
@@ -12,6 +15,13 @@ import { profile } from '../data/portfolio'
         <i>ciao!</i>
       </v-chip>
       <v-spacer />
+      <v-btn
+        :icon="isDark ? mdiWeatherSunny : mdiWeatherNight"
+        variant="text"
+        color="primary"
+        :aria-label="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
+        @click="toggle"
+      />
       <v-btn :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank" rel="noopener"
         aria-label="GitHub" />
     </v-container>

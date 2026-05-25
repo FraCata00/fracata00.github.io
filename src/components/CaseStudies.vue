@@ -85,6 +85,7 @@ const timelineLineColor = computed(() => isDark.value ? '#3a3630' : '#d8d1c2')
   margin: 5px 0 18px;
 }
 :deep(.v-timeline-item__body) { min-width: 0; justify-self: stretch !important; }
+:deep(.v-timeline) { overflow-x: clip; }
 .grid { display: grid; grid-template-columns: 96px 1fr; gap: 0 22px; }
 .grid .k {
   font-family: 'JetBrains Mono', monospace;

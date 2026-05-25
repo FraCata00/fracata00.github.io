@@ -78,5 +78,11 @@ a.contact-link:hover {
 @media (max-width: 600px) {
   .colophon { flex-direction: column; align-items: center; text-align: center; gap: 6px; margin-top: 28px; }
   .contact-link { font-size: 14px; padding: 16px 0; }
+  .foot-title { margin-bottom: 8px; }
+}
+
+@media (max-width: 400px) {
+  .contact-link { font-size: 12.5px; overflow-wrap: break-word; word-break: break-all; }
+  .colophon { font-size: 11.5px; }
 }
 </style>

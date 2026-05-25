@@ -80,6 +80,7 @@ const { mobile } = useDisplay()
   font-size: 18px;
   margin: 5px 0 18px;
 }
+:deep(.v-timeline-item__body) { min-width: 0; justify-self: stretch !important; }
 .grid { display: grid; grid-template-columns: 96px 1fr; gap: 0 22px; }
 .grid .k {
   font-family: 'JetBrains Mono', monospace;
@@ -103,6 +104,8 @@ pre {
   line-height: 1.6;
   font-family: 'JetBrains Mono', monospace;
   box-shadow: 0 16px 34px -18px rgba(43, 38, 34, 0.55);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 figcaption {
   font-family: 'JetBrains Mono', monospace;
@@ -141,8 +144,16 @@ figcaption {
 @media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; gap: 2px; }
   .grid .k { padding-top: 12px; }
-  pre { font-size: 12px; padding: 12px 14px; }
+  pre { font-size: 12px; padding: 12px 14px; border-radius: 7px; }
   .ctx { font-size: 16px; }
   .chips { gap: 6px; }
+  .chip-x { font-size: 11.5px; padding: 4px 9px; }
+  figure { margin: 16px 0 0; }
+}
+
+@media (max-width: 400px) {
+  pre { font-size: 11px; padding: 10px 12px; }
+  .case h2, .case :deep(h2) { font-size: 20px; }
+  .ctx { font-size: 14.5px; }
 }
 </style>

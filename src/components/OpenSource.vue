@@ -62,6 +62,21 @@ import { openSource } from '../data/portfolio'
   font-size: 16px;
 }
 
+@media (max-width: 600px) {
+  .os-title :deep(*),
+  .os-title { font-size: 20px !important; }
+
+  .os-card :deep(.v-card-text) { font-size: 15px; }
+
+  .os-card :deep(code) {
+    display: block;
+    overflow-x: auto;
+    white-space: pre;
+    word-break: normal;
+    padding: 8px 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .os-card:hover {
     transform: none;

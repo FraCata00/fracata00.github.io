@@ -1,6 +1,6 @@
 # Portfolio — Francesco
 
-![Preview](preview.png)
+<img src="preview.png" width="49%" alt="Light mode" /> <img src="preview-dark.png" width="49%" alt="Dark mode" />
 
 Personal engineering portfolio built as a static single-page site with
 **Vue 3 + Vuetify 3 + Tailwind CSS**, bundled by **Vite**, and shipped to

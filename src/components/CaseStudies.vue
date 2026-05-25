@@ -1,8 +1,12 @@
 <script setup>
+import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { caseStudies } from '../data/portfolio'
+import { useAppTheme } from '../composables/useAppTheme'
 
 const { mobile } = useDisplay()
+const { isDark } = useAppTheme()
+const timelineLineColor = computed(() => isDark.value ? '#3a3630' : '#d8d1c2')
 </script>
 
 <template>
@@ -14,7 +18,7 @@ const { mobile } = useDisplay()
     <v-timeline
       side="end"
       align="start"
-      line-color="#d8d1c2"
+      :line-color="timelineLineColor"
       truncate-line="both"
       :density="mobile ? 'compact' : 'comfortable'"
     >

@@ -14,6 +14,12 @@ const { isDark, toggle } = useAppTheme()
         <span class="dot" />
         <i>ciao!</i>
       </v-chip>
+      <nav class="nav-links" aria-label="Sezioni pagina">
+        <a href="#work">work</a>
+        <a href="#toolbox">toolbox</a>
+        <a href="#oss">open source</a>
+        <a href="#contact">contact</a>
+      </nav>
       <v-spacer />
       <v-btn
         :icon="isDark ? mdiWeatherSunny : mdiWeatherNight"
@@ -51,8 +57,32 @@ const { isDark, toggle } = useAppTheme()
   vertical-align: middle;
 }
 
+.nav-links {
+  display: flex;
+  gap: 4px;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+  background: var(--paper2);
+  text-decoration: none;
+}
+
 @media (max-width: 480px) {
   .brand { font-size: 17px; }
   .otw { display: none; }
+  .nav-links { display: none; }
 }
 </style>

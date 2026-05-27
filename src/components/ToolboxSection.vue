@@ -3,7 +3,7 @@ import { toolbox } from '../data/portfolio'
 </script>
 
 <template>
-  <section v-reveal>
+  <section id="toolbox" v-reveal>
     <div class="sec-label"><span class="n">$</span> Toolbox</div>
     <v-row>
       <v-col v-for="g in toolbox" :key="g.h" cols="12" sm="6" md="3">

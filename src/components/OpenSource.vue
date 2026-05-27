@@ -3,7 +3,7 @@ import { openSource } from '../data/portfolio'
 </script>
 
 <template>
-  <section v-reveal>
+  <section id="oss" v-reveal>
     <div class="sec-label"><span class="n">★</span> Open source</div>
 
     <v-card v-for="o in openSource" :key="o.title" class="os-card mb-4" flat>

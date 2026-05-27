@@ -3,7 +3,7 @@ import { contacts } from '../data/portfolio'
 </script>
 
 <template>
-  <footer class="foot" v-reveal>
+  <footer id="contact" class="foot" v-reveal>
     <h2 class="display foot-title">Let's <em>talk</em>.</h2>
 
     <v-row class="mt-3">

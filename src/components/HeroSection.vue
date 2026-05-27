@@ -1,10 +1,23 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import { mdiDownload } from '@mdi/js'
 import { profile, heroMeta } from '../data/portfolio'
 import undrawDeveloper from '../assets/undraw_developer.svg'
+
+const cvAvailable = ref(false)
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/cv.pdf', { method: 'HEAD' })
+    cvAvailable.value = res.ok
+  } catch {
+    cvAvailable.value = false
+  }
+})
 </script>
 
 <template>
-  <header class="hero">
+  <header id="top" class="hero">
     <div class="hero-inner">
       <div class="hero-avatar-wrap">
         <div class="avatar-blob-shadow"></div>
@@ -21,8 +34,26 @@ import undrawDeveloper from '../assets/undraw_developer.svg'
           Django and PostgreSQL on the inside, Vue and Nuxt on the outside. I care about
           correctness, query plans, and code the next person can actually read.
         </p>
+        <div class="hero-actions">
+          <v-btn
+            href="/cv.pdf"
+            download
+            variant="tonal"
+            color="primary"
+            size="small"
+            :prepend-icon="mdiDownload"
+            :disabled="!cvAvailable"
+          >
+            Download CV
+          </v-btn>
+        </div>
+
         <div class="meta">
-          <span v-for="m in heroMeta" :key="m.label"><b>{{ m.label }}</b> · {{ m.value }}</span>
+          <span v-for="m in heroMeta" :key="m.label">
+            <b>{{ m.label }}</b> ·
+            <a v-if="m.href" :href="m.href" target="_blank" rel="noopener">{{ m.value }}</a>
+            <template v-else>{{ m.value }}</template>
+          </span>
           <span>
             <b>github</b> ·
             <a :href="profile.github" target="_blank" rel="noopener">{{ profile.githubHandle }}</a>
@@ -90,6 +121,8 @@ import undrawDeveloper from '../assets/undraw_developer.svg'
   50%       { border-radius: 32% 68% 68% 32% / 32% 32% 68% 68%; }
   75%       { border-radius: 52% 48% 38% 62% / 42% 58% 42% 58%; }
 }
+
+.hero-actions { margin-bottom: 20px; }
 
 .meta {
   display: flex;

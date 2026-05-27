@@ -16,6 +16,11 @@ export const heroMeta = [
   { label: "Now", value: "Spinforward S.R.L." },
   { label: "Focus", value: "Django · DRF · Celery · PostgreSQL" },
   { label: "Frontend", value: "Vue 3 · Nuxt 3" },
+  {
+    label: "linkedin",
+    value: "/in/francesco-cataldo",
+    href: "https://www.linkedin.com/in/francesco-cataldo/",
+  },
 ];
 
 export const caseStudies = [
@@ -167,7 +172,7 @@ export const openSource = [
       },
       {
         label: "GitHub",
-        href: "https://github.com/FraCata00",
+        href: "https://github.com/FraCata00/django-istat-italian-places",
         icon: mdiGithub,
       },
     ],

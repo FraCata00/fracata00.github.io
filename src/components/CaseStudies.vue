@@ -10,7 +10,7 @@ const timelineLineColor = computed(() => isDark.value ? '#3a3630' : '#d8d1c2')
 </script>
 
 <template>
-  <section v-reveal>
+  <section id="work" v-reveal>
     <div class="sec-label">
       <span class="n">§</span> Selected work — anonymised client engagements
     </div>

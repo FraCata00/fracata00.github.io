@@ -1,9 +1,22 @@
 <script setup>
-import { mdiGithub, mdiPasta, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js'
+import { computed } from 'vue'
+import { mdiGithub, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
 import { profile } from '../data/portfolio'
 import { useAppTheme } from '../composables/useAppTheme'
 
-const { isDark, toggle } = useAppTheme()
+const { mode, setMode } = useAppTheme()
+
+const themeIcon = computed(() =>
+  mode.value === 'light' ? mdiWeatherSunny
+  : mode.value === 'dark' ? mdiWeatherNight
+  : mdiThemeLightDark,
+)
+
+const themeCycle = ['system', 'light', 'dark']
+function cycleMode() {
+  const next = themeCycle[(themeCycle.indexOf(mode.value) + 1) % themeCycle.length]
+  setMode(next)
+}
 </script>
 
 <template>
@@ -21,13 +34,7 @@ const { isDark, toggle } = useAppTheme()
         <a href="#contact">contact</a>
       </nav>
       <v-spacer />
-      <v-btn
-        :icon="isDark ? mdiWeatherSunny : mdiWeatherNight"
-        variant="text"
-        color="primary"
-        :aria-label="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
-        @click="toggle"
-      />
+      <v-btn :icon="themeIcon" variant="text" color="primary" aria-label="Tema" @click="cycleMode" />
       <v-btn :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank" rel="noopener"
         aria-label="GitHub" />
     </v-container>

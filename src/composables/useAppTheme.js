@@ -1,21 +1,43 @@
 import { ref } from 'vue'
 
-const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null
-const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+const STORAGE_KEY = 'theme' // 'light' | 'dark' | 'system'
 
-const isDark = ref(saved ? saved === 'dark' : prefersDark)
+const media =
+  typeof window !== 'undefined'
+    ? window.matchMedia('(prefers-color-scheme: dark)')
+    : null
 
-function apply(dark) {
-  isDark.value = dark
-  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
-  localStorage.setItem('theme', dark ? 'dark' : 'light')
+const saved =
+  typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null
+
+// system | light | dark
+const mode = ref(['light', 'dark', 'system'].includes(saved) ? saved : 'system')
+const isDark = ref(false)
+
+function resolveDark() {
+  if (mode.value === 'system') return media ? media.matches : false
+  return mode.value === 'dark'
 }
 
-apply(isDark.value)
+function render() {
+  isDark.value = resolveDark()
+  if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+  }
+}
+
+media?.addEventListener('change', () => {
+  if (mode.value === 'system') render()
+})
+
+function setMode(next) {
+  mode.value = next
+  if (typeof localStorage !== 'undefined') localStorage.setItem(STORAGE_KEY, next)
+  render()
+}
+
+render()
 
 export function useAppTheme() {
-  return {
-    isDark,
-    toggle: () => apply(!isDark.value),
-  }
+  return { mode, isDark, setMode }
 }

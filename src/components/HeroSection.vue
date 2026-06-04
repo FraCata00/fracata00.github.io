@@ -26,7 +26,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="hero-text">
-        <div class="eyebrow">{{ profile.role }} · {{ profile.location }}</div>
+        <div class="eyebrow">{{ profile.role }} · {{ profile.yoe }} · {{ profile.location }}</div>
         <h1 class="display hero-title">
           Francesco builds <em>data-heavy</em> backends that stay fast under load.
         </h1>

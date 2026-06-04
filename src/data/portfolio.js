@@ -5,11 +5,13 @@ import { mdiLanguagePython, mdiGithub } from "@mdi/js";
 export const profile = {
   name: "Francesco",
   surname: "Cataldo",
-  role: "Full-stack developer",
+  role: "Python · Django developer",
+  yoe: "4+ yrs",
   location: "Turin, Italy",
   github: "https://github.com/FraCata00",
   githubHandle: "@FraCata00",
   pypi: "https://pypi.org/user/FraCata00/",
+  linkedin: "https://www.linkedin.com/in/francesco-cataldo/",
 };
 
 export const heroMeta = [

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { mdiGithub, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
+import { mdiGithub, mdiLinkedin, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
 import { profile } from '../data/portfolio'
 import { useAppTheme } from '../composables/useAppTheme'
 
@@ -35,6 +35,8 @@ function cycleMode() {
       </nav>
       <v-spacer />
       <v-btn :icon="themeIcon" variant="text" color="primary" aria-label="Tema" @click="cycleMode" />
+      <v-btn :icon="mdiLinkedin" variant="text" color="primary" :href="profile.linkedin" target="_blank" rel="noopener"
+        aria-label="LinkedIn" />
       <v-btn :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank" rel="noopener"
         aria-label="GitHub" />
     </v-container>

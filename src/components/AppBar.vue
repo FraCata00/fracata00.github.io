@@ -87,7 +87,7 @@ onUnmounted(() => {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        class="tw-fixed tw-inset-0 tw-z-[2400] tw-flex tw-flex-col tw-overflow-y-auto tw-bg-paper tw-pl-[calc(24px+env(safe-area-inset-left))] tw-pr-[calc(24px+env(safe-area-inset-right))] tw-pt-[calc(16px+env(safe-area-inset-top))] tw-pb-[calc(26px+env(safe-area-inset-bottom))]"
+        class="tw-fixed tw-inset-0 tw-z-[2400] tw-flex tw-flex-col tw-overflow-y-auto tw-bg-paper tw-pl-[calc(16px+env(safe-area-inset-left))] tw-pr-[calc(16px+env(safe-area-inset-right))] tw-pt-[calc(16px+env(safe-area-inset-top))] tw-pb-[calc(26px+env(safe-area-inset-bottom))]"
       >
         <!-- same faint engineering-paper grid as the page, faded from the top -->
         <div

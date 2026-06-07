@@ -64,7 +64,6 @@ onUnmounted(() => {
         {{ profile.name }} {{ profile.surname }}
       </button>
       <v-chip size="small" variant="tonal" color="primary" label class="ml-3 otw" :append-icon="mdiPasta">
-        <span class="dot" />
         <i>ciao!</i>
       </v-chip>
       <nav class="nav-links" aria-label="Page sections">
@@ -171,16 +170,6 @@ onUnmounted(() => {
 
 .brand:hover {
   color: var(--accent);
-}
-
-.otw .dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-right: 6px;
-  vertical-align: middle;
 }
 
 .nav-links {

@@ -10,7 +10,13 @@ import undrawDeveloper from '../assets/undraw_developer.svg'
       <div class="hero-avatar-wrap">
         <div class="avatar-blob-shadow"></div>
         <div class="avatar-blob">
-          <img :src="undrawDeveloper" alt="Developer illustration" />
+          <img
+            :src="undrawDeveloper"
+            alt="Developer illustration"
+            width="270"
+            height="270"
+            decoding="async"
+          />
         </div>
       </div>
       <div class="hero-text">

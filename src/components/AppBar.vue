@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch, onUnmounted } from 'vue'
+import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
 import { mdiGithub, mdiLinkedin, mdiMenu, mdiClose, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
 import { profile } from '../data/portfolio'
 import { useAppTheme } from '../composables/useAppTheme'
@@ -36,6 +36,26 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
 }
 
+// Scroll-spy: highlight the nav item for the section currently near the top.
+const activeId = ref('')
+let observer = null
+onMounted(() => {
+  const sections = navItems
+    .map(item => document.querySelector(item.href))
+    .filter(Boolean)
+  if (!sections.length || typeof IntersectionObserver === 'undefined') return
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) activeId.value = `#${e.target.id}`
+      }
+    },
+    // thin detection band just below the app bar
+    { rootMargin: '-78px 0px -75% 0px', threshold: 0 },
+  )
+  sections.forEach(s => observer.observe(s))
+})
+
 // Fullscreen mobile menu
 const open = ref(false)
 function onKey(e) {
@@ -54,6 +74,7 @@ watch(open, (isOpen) => {
 onUnmounted(() => {
   if (typeof window !== 'undefined') window.removeEventListener('keydown', onKey)
   if (typeof document !== 'undefined') document.documentElement.style.overflow = ''
+  if (observer) observer.disconnect()
 })
 </script>
 
@@ -67,7 +88,13 @@ onUnmounted(() => {
         <i>ciao!</i>
       </v-chip>
       <nav class="nav-links" aria-label="Page sections">
-        <a v-for="item in navItems" :key="item.href" :href="item.href">{{ item.label }}</a>
+        <a
+          v-for="item in navItems"
+          :key="item.href"
+          :href="item.href"
+          :class="{ active: activeId === item.href }"
+          :aria-current="activeId === item.href ? 'true' : undefined"
+        >{{ item.label }}</a>
       </nav>
       <v-spacer />
       <v-btn :icon="themeIcon" variant="text" color="primary" :aria-label="`Switch theme (current: ${themeLabel})`"
@@ -117,7 +144,9 @@ onUnmounted(() => {
             :key="item.href"
             :href="item.href"
             :style="{ animationDelay: `${i * 60 + 90}ms` }"
-            class="tw-group tw-flex tw-animate-menu-rise tw-items-baseline tw-gap-4 tw-border-b tw-border-rule-soft tw-py-2.5 tw-font-serif tw-text-[clamp(34px,13vw,58px)] tw-font-medium tw-leading-[1.06] tw-tracking-[-0.02em] tw-text-ink tw-no-underline tw-transition-[color,padding] tw-duration-200 hover:tw-pl-2 hover:tw-text-accent active:tw-pl-2 active:tw-text-accent motion-reduce:tw-animate-none"
+            class="tw-group tw-flex tw-animate-menu-rise tw-items-baseline tw-gap-4 tw-border-b tw-border-rule-soft tw-py-2.5 tw-font-serif tw-text-[clamp(34px,13vw,58px)] tw-font-medium tw-leading-[1.06] tw-tracking-[-0.02em] tw-no-underline tw-transition-[color,padding] tw-duration-200 hover:tw-pl-2 hover:tw-text-accent active:tw-pl-2 active:tw-text-accent motion-reduce:tw-animate-none"
+            :class="activeId === item.href ? 'tw-text-accent tw-pl-2' : 'tw-text-ink'"
+            :aria-current="activeId === item.href ? 'true' : undefined"
             @click="open = false"
           >
             <span class="tw-font-mono tw-text-[13px] tw-font-medium tw-tracking-[0.06em] tw-text-accent2">
@@ -193,6 +222,11 @@ onUnmounted(() => {
   color: var(--ink);
   background: var(--paper2);
   text-decoration: none;
+}
+
+.nav-links a.active {
+  color: var(--accent);
+  background: var(--paper2);
 }
 
 .menu-btn { display: none; }

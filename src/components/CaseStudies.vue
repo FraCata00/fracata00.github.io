@@ -100,7 +100,16 @@ const timelineLineColor = computed(() => isDark.value ? '#3a3630' : '#d8d1c2')
 
 figure { margin: 22px 0 0; }
 pre {
-  background: var(--code-bg);
+  /* CSS scroll-shadows: edge shadows show only while there's more to scroll */
+  background:
+    linear-gradient(to right, var(--code-bg) 30%, transparent) left center,
+    linear-gradient(to left, var(--code-bg) 30%, transparent) right center,
+    radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.4), transparent) left center,
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.4), transparent) right center;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 16px 100%, 16px 100%;
+  background-attachment: local, local, scroll, scroll;
+  background-color: var(--code-bg);
   color: var(--code-fg);
   border-radius: 10px;
   padding: 18px 20px;

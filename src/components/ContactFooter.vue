@@ -7,9 +7,10 @@ import { contacts } from '../data/portfolio'
     <h2 class="display foot-title">Let's <em>talk</em>.</h2>
 
     <v-row class="mt-3">
-      <v-col v-for="l in contacts" :key="l.label" cols="12" sm="6" md="3">
+      <v-col v-for="l in contacts" :key="l.label" cols="12" sm="6">
         <a v-if="l.href" :href="l.href" target="_blank" rel="noopener" class="contact-link">
-          <span class="lab">{{ l.kind }} ·</span> {{ l.label }}
+          <span><span class="lab">{{ l.kind }} ·</span> {{ l.label }}</span>
+          <span class="arr" aria-hidden="true">↗</span>
         </a>
         <span v-else class="contact-link placeholder">
           <span class="lab">{{ l.kind }} ·</span> {{ l.label }}
@@ -36,7 +37,9 @@ import { contacts } from '../data/portfolio'
 }
 
 .contact-link {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   padding: 14px 0;
@@ -48,9 +51,30 @@ import { contacts } from '../data/portfolio'
   color: var(--ink-soft);
 }
 
+.contact-link .arr {
+  color: var(--accent);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
 a.contact-link:hover {
   color: var(--accent);
   text-decoration: none;
+}
+
+a.contact-link:hover .arr {
+  opacity: 1;
+  transform: none;
+}
+
+/* On touch there is no hover — keep the affordance always visible */
+@media (hover: none) {
+  .contact-link .arr {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .contact-link.placeholder {
@@ -77,7 +101,8 @@ a.contact-link:hover {
 
 @media (max-width: 600px) {
   .colophon { flex-direction: column; align-items: center; text-align: center; gap: 6px; margin-top: 28px; }
-  .contact-link { font-size: 14px; padding: 16px 0; }
+  /* full-width rows on mobile: push the arrow to the trailing edge */
+  .contact-link { font-size: 14px; padding: 16px 0; justify-content: space-between; }
   .foot-title { margin-bottom: 8px; }
 }
 

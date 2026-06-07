@@ -237,11 +237,15 @@ onUnmounted(() => {
 
 .menu-btn { display: none; }
 
-@media (max-width: 480px) {
-  .brand { font-size: 17px; }
+/* Below 768px the desktop header gets cramped — switch to the fullscreen menu */
+@media (max-width: 768px) {
   .otw { display: none; }
   .nav-links { display: none; }
   .social-btn { display: none; }
   .menu-btn { display: inline-flex; }
+}
+
+@media (max-width: 480px) {
+  .brand { font-size: 17px; }
 }
 </style>

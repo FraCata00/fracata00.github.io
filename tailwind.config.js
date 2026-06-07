@@ -31,6 +31,16 @@ export default {
         sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
+      // Staggered entrance for the fullscreen mobile menu links.
+      keyframes: {
+        'menu-rise': {
+          from: { opacity: '0', transform: 'translateY(18px)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+      },
+      animation: {
+        'menu-rise': 'menu-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards',
+      },
     },
   },
   plugins: [],

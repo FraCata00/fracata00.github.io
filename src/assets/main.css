@@ -34,6 +34,21 @@ html { scroll-behavior: smooth; overflow-x: clip; scroll-padding-top: 78px; }
 body { overflow-x: clip; }
 ::selection { background: var(--accent); color: var(--paper); }
 
+/* Editorial scrollbar, theme-aware via the design tokens */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border: 3px solid var(--paper);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
+::-webkit-scrollbar-corner { background: transparent; }
+
 /* Keep the editorial identity on top of Vuetify's surfaces */
 .v-application {
   font-family: 'IBM Plex Sans', system-ui, sans-serif !important;

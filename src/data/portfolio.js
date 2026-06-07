@@ -15,7 +15,7 @@ export const profile = {
 };
 
 export const heroMeta = [
-  { label: "Now", value: "Spinforward S.R.L." },
+  { label: "Now", value: "Spinforward S.R.L.", href: "https://spinforward.it" },
   { label: "Focus", value: "Django · DRF · Celery · PostgreSQL" },
   { label: "Frontend", value: "Vue 3 · Nuxt 3" },
   {

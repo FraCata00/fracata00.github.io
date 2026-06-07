@@ -6,16 +6,25 @@ export default {
   corePlugins: { preflight: false },
   // "tw-" prefix avoids collisions with Vuetify utility classes (d-flex, mb-4, …)
   prefix: 'tw-',
+  // Theme switches via the [data-theme="dark"] attribute on <html>. Because the
+  // colors below resolve to CSS variables that flip with that attribute, theming
+  // is automatic and `dark:` variants are rarely needed.
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
+      // Mapped to the design-token CSS variables in assets/main.css so a single
+      // source of truth drives both raw CSS and Tailwind utilities.
       colors: {
-        paper: '#f6f3ec',
-        paper2: '#efeae0',
-        ink: '#23201b',
-        'ink-soft': '#5c564b',
-        rule: '#d8d1c2',
-        accent: '#9a3b1f',
-        accent2: '#1f5c4a',
+        paper: 'var(--paper)',
+        paper2: 'var(--paper2)',
+        ink: 'var(--ink)',
+        'ink-soft': 'var(--ink-soft)',
+        rule: 'var(--rule)',
+        'rule-soft': 'var(--rule-soft)',
+        accent: 'var(--accent)',
+        accent2: 'var(--accent2)',
+        'code-bg': 'var(--code-bg)',
+        'code-fg': 'var(--code-fg)',
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],

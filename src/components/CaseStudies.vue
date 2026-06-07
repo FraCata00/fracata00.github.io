@@ -51,7 +51,7 @@ const timelineLineColor = computed(() => isDark.value ? '#3a3630' : '#d8d1c2')
             <figcaption>{{ c.caption }}</figcaption>
           </figure>
 
-          <div v-if="c.chips" class="chips">
+          <div v-if="c.chips" class="tw-flex tw-flex-wrap tw-gap-2 tw-mt-5 max-[600px]:tw-gap-1.5">
             <!-- eslint-disable-next-line vue/no-v-html -->
             <span v-for="(ch, i) in c.chips" :key="i" class="chip-x" v-html="ch" />
           </div>
@@ -119,7 +119,6 @@ figcaption {
   margin-top: 8px;
   letter-spacing: 0.04em;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .chip-x {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12.5px;
@@ -151,7 +150,6 @@ figcaption {
   .grid .k { padding-top: 12px; }
   pre { font-size: 12px; padding: 12px 14px; border-radius: 7px; }
   .ctx { font-size: 16px; }
-  .chips { gap: 6px; }
   .chip-x { font-size: 11.5px; padding: 4px 9px; }
   figure { margin: 16px 0 0; }
 }

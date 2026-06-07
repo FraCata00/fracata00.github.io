@@ -1,24 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
 import { mdiDownload } from '@mdi/js'
 import { profile, heroMeta } from '../data/portfolio'
 import undrawDeveloper from '../assets/undraw_developer.svg'
-
-const cvAvailable = ref(false)
-
-onMounted(async () => {
-  try {
-    const res = await fetch('/cv.pdf', { method: 'HEAD' })
-    cvAvailable.value = res.ok
-  } catch {
-    cvAvailable.value = false
-  }
-})
 </script>
 
 <template>
   <header id="top" class="hero">
-    <div class="hero-inner">
+    <div class="tw-grid tw-grid-cols-[auto_1fr] tw-items-center tw-gap-[52px] max-[768px]:tw-grid-cols-1">
       <div class="hero-avatar-wrap">
         <div class="avatar-blob-shadow"></div>
         <div class="avatar-blob">
@@ -34,7 +22,7 @@ onMounted(async () => {
           Django and PostgreSQL on the inside, Vue and Nuxt on the outside. I care about
           correctness, query plans, and code the next person can actually read.
         </p>
-        <div class="hero-actions">
+        <div class="tw-mb-5">
           <v-btn
             href="/cv.pdf"
             download
@@ -42,7 +30,6 @@ onMounted(async () => {
             color="primary"
             size="small"
             :prepend-icon="mdiDownload"
-            :disabled="!cvAvailable"
           >
             Download CV
           </v-btn>
@@ -66,13 +53,6 @@ onMounted(async () => {
 
 <style scoped>
 .hero { padding: clamp(28px, 8vw, 64px) 0 26px; border-bottom: 1px solid var(--rule); }
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 52px;
-}
 
 .hero-title { font-size: clamp(28px, 7vw, 74px); margin-bottom: 22px; line-height: 1.08; }
 
@@ -122,8 +102,6 @@ onMounted(async () => {
   75%       { border-radius: 52% 48% 38% 62% / 42% 58% 42% 58%; }
 }
 
-.hero-actions { margin-bottom: 20px; }
-
 .meta {
   display: flex;
   flex-wrap: wrap;
@@ -140,9 +118,6 @@ onMounted(async () => {
 }
 
 @media (max-width: 768px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-  }
   .hero-avatar-wrap {
     justify-self: center;
     order: -1;

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { mdiGithub, mdiLinkedin, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
+import { mdiGithub, mdiLinkedin, mdiMenu, mdiPasta, mdiWeatherSunny, mdiWeatherNight, mdiThemeLightDark } from '@mdi/js'
 import { profile } from '../data/portfolio'
 import { useAppTheme } from '../composables/useAppTheme'
 
@@ -12,11 +12,24 @@ const themeIcon = computed(() =>
   : mdiThemeLightDark,
 )
 
+const themeLabel = computed(() =>
+  mode.value === 'light' ? 'light'
+  : mode.value === 'dark' ? 'dark'
+  : 'system',
+)
+
 const themeCycle = ['system', 'light', 'dark']
 function cycleMode() {
   const next = themeCycle[(themeCycle.indexOf(mode.value) + 1) % themeCycle.length]
   setMode(next)
 }
+
+const navItems = [
+  { href: '#work', label: 'work' },
+  { href: '#toolbox', label: 'toolbox' },
+  { href: '#oss', label: 'open source' },
+  { href: '#contact', label: 'contact' },
+]
 </script>
 
 <template>
@@ -27,18 +40,29 @@ function cycleMode() {
         <span class="dot" />
         <i>ciao!</i>
       </v-chip>
-      <nav class="nav-links" aria-label="Sezioni pagina">
-        <a href="#work">work</a>
-        <a href="#toolbox">toolbox</a>
-        <a href="#oss">open source</a>
-        <a href="#contact">contact</a>
+      <nav class="nav-links" aria-label="Page sections">
+        <a v-for="item in navItems" :key="item.href" :href="item.href">{{ item.label }}</a>
       </nav>
       <v-spacer />
-      <v-btn :icon="themeIcon" variant="text" color="primary" aria-label="Tema" @click="cycleMode" />
-      <v-btn :icon="mdiLinkedin" variant="text" color="primary" :href="profile.linkedin" target="_blank" rel="noopener"
-        aria-label="LinkedIn" />
-      <v-btn :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank" rel="noopener"
-        aria-label="GitHub" />
+      <v-btn :icon="themeIcon" variant="text" color="primary" :aria-label="`Switch theme (current: ${themeLabel})`"
+        @click="cycleMode" />
+      <v-btn class="social-btn" :icon="mdiLinkedin" variant="text" color="primary" :href="profile.linkedin"
+        target="_blank" rel="noopener" aria-label="LinkedIn" />
+      <v-btn class="social-btn" :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank"
+        rel="noopener" aria-label="GitHub" />
+
+      <v-menu location="bottom end">
+        <template #activator="{ props }">
+          <v-btn class="menu-btn" :icon="mdiMenu" variant="text" color="primary" aria-label="Open menu" v-bind="props" />
+        </template>
+        <v-list class="mobile-nav" bg-color="background" density="comfortable">
+          <v-list-item v-for="item in navItems" :key="item.href" :href="item.href" :title="item.label" />
+          <v-divider class="my-1" />
+          <v-list-item :href="profile.linkedin" target="_blank" rel="noopener" :prepend-icon="mdiLinkedin"
+            title="LinkedIn" />
+          <v-list-item :href="profile.github" target="_blank" rel="noopener" :prepend-icon="mdiGithub" title="GitHub" />
+        </v-list>
+      </v-menu>
     </v-container>
   </v-app-bar>
 </template>
@@ -89,9 +113,20 @@ function cycleMode() {
   text-decoration: none;
 }
 
+.menu-btn { display: none; }
+
+.mobile-nav :deep(.v-list-item-title) {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
 @media (max-width: 480px) {
   .brand { font-size: 17px; }
   .otw { display: none; }
   .nav-links { display: none; }
+  .social-btn { display: none; }
+  .menu-btn { display: inline-flex; }
 }
 </style>

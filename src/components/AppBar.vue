@@ -38,6 +38,7 @@ function scrollToTop() {
 
 // Scroll-spy: highlight the nav item for the section currently near the top.
 const activeId = ref('')
+const visibleIds = new Set()
 let observer = null
 onMounted(() => {
   const sections = navItems
@@ -47,8 +48,13 @@ onMounted(() => {
   observer = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
-        if (e.isIntersecting) activeId.value = `#${e.target.id}`
+        if (e.isIntersecting) visibleIds.add(e.target.id)
+        else visibleIds.delete(e.target.id)
       }
+      // first section (in document order) currently in the band; when none are
+      // (e.g. scrolled back up to the hero/top), clear the highlight entirely
+      const current = navItems.find(item => visibleIds.has(item.href.slice(1)))
+      activeId.value = current ? current.href : ''
     },
     // thin detection band just below the app bar
     { rootMargin: '-78px 0px -75% 0px', threshold: 0 },

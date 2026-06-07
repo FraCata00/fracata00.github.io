@@ -8,6 +8,7 @@ import CaseStudies from './components/CaseStudies.vue'
 import ToolboxSection from './components/ToolboxSection.vue'
 import OpenSource from './components/OpenSource.vue'
 import ContactFooter from './components/ContactFooter.vue'
+import BackToTop from './components/BackToTop.vue'
 
 const vuetifyTheme = useTheme()
 const { isDark } = useAppTheme()
@@ -29,5 +30,6 @@ watch(isDark, dark => {
         <ContactFooter />
       </v-container>
     </v-main>
+    <BackToTop />
   </v-app>
 </template>

@@ -6,6 +6,9 @@ export default {
   corePlugins: { preflight: false },
   // "tw-" prefix avoids collisions with Vuetify utility classes (d-flex, mb-4, …)
   prefix: 'tw-',
+  // Only apply `hover:` utilities on devices that actually support hover, so
+  // tapping on touchscreens doesn't leave elements stuck in their hover state.
+  future: { hoverOnlyWhenSupported: true },
   // Theme switches via the [data-theme="dark"] attribute on <html>. Because the
   // colors below resolve to CSS variables that flip with that attribute, theming
   // is automatic and `dark:` variants are rarely needed.

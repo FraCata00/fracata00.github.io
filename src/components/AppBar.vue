@@ -31,6 +31,11 @@ const navItems = [
   { href: '#contact', label: 'contact' },
 ]
 
+function scrollToTop() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+}
+
 // Fullscreen mobile menu
 const open = ref(false)
 function onKey(e) {
@@ -55,7 +60,9 @@ onUnmounted(() => {
 <template>
   <v-app-bar flat color="background" class="appbar" height="62">
     <v-container class="content d-flex align-center py-0">
-      <span class="brand">{{ profile.name }} {{ profile.surname }}</span>
+      <button type="button" class="brand" aria-label="Back to top" @click="scrollToTop">
+        {{ profile.name }} {{ profile.surname }}
+      </button>
       <v-chip size="small" variant="tonal" color="primary" label class="ml-3 otw" :append-icon="mdiPasta">
         <span class="dot" />
         <i>ciao!</i>
@@ -152,6 +159,18 @@ onUnmounted(() => {
   font-size: 21px;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  /* reset native button styles */
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.brand:hover {
+  color: var(--accent);
 }
 
 .otw .dot {

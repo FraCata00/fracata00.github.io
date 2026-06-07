@@ -20,8 +20,9 @@ watch(isDark, dark => {
 
 <template>
   <v-app>
+    <a href="#main" class="skip-link">Skip to content</a>
     <AppBar />
-    <v-main>
+    <v-main id="main">
       <v-container class="content">
         <HeroSection />
         <CaseStudies />

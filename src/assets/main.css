@@ -80,6 +80,39 @@ html {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+/* Visible keyboard focus for links, native buttons and custom controls.
+   Vuetify's .v-btn handles its own focus ring, so it's excluded. */
+a:focus-visible,
+button:not(.v-btn):focus-visible,
+[tabindex]:not(.v-btn):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip-to-content link: visually hidden until focused */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 3000;
+  padding: 10px 16px;
+  background: var(--paper2);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible,
+.skip-link:focus {
+  transform: translateY(0);
+  text-decoration: none;
+}
+
 code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85em;

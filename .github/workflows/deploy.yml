@@ -12,10 +12,6 @@ permissions:
   pages: write
   id-token: write
 
-# Run all JavaScript-based actions on Node.js 24 (Node 20 is deprecated on runners).
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 # Allow one concurrent deployment; cancel in-progress runs on new pushes.
 concurrency:
   group: pages
@@ -27,10 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -47,7 +43,7 @@ jobs:
       - name: Upload Pages artifact
         # Only ship the artifact on pushes to main, not on PRs.
         if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -62,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -109,8 +109,8 @@ onUnmounted(() => {
         target="_blank" rel="noopener" aria-label="LinkedIn" />
       <v-btn class="social-btn" :icon="mdiGithub" variant="text" color="primary" :href="profile.github" target="_blank"
         rel="noopener" aria-label="GitHub" />
-      <v-btn class="menu-btn" :icon="mdiMenu" variant="text" color="primary" aria-label="Open menu"
-        @click="open = true" />
+      <v-btn class="menu-btn" :icon="open ? mdiClose : mdiMenu" variant="text" color="primary"
+        :aria-label="open ? 'Close menu' : 'Open menu'" :aria-expanded="open" @click="open = !open" />
     </v-container>
   </v-app-bar>
 
@@ -126,20 +126,13 @@ onUnmounted(() => {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        class="tw-fixed tw-inset-0 tw-z-[2400] tw-flex tw-flex-col tw-overflow-y-auto tw-bg-paper tw-pl-[calc(16px+env(safe-area-inset-left))] tw-pr-[calc(16px+env(safe-area-inset-right))] tw-pt-[calc(16px+env(safe-area-inset-top))] tw-pb-[calc(26px+env(safe-area-inset-bottom))]"
+        class="tw-fixed tw-inset-0 tw-z-[2400] tw-flex tw-flex-col tw-overflow-y-auto tw-bg-paper tw-px-4 tw-pt-[62px] tw-pb-[calc(26px+env(safe-area-inset-bottom))]"
       >
         <!-- same faint engineering-paper grid as the page, faded from the top -->
         <div
           aria-hidden="true"
           class="tw-pointer-events-none tw-absolute tw-inset-0 tw-z-0 tw-opacity-[0.14] tw-[background-size:46px_46px] tw-[background-image:linear-gradient(var(--rule)_1px,transparent_1px),linear-gradient(90deg,var(--rule)_1px,transparent_1px)] tw-[mask-image:radial-gradient(120%_80%_at_50%_0%,#000_30%,transparent_100%)] tw-[-webkit-mask-image:radial-gradient(120%_80%_at_50%_0%,#000_30%,transparent_100%)]"
         />
-
-        <div class="tw-relative tw-z-[1] tw-flex tw-min-h-12 tw-items-center tw-justify-between">
-          <span class="tw-whitespace-nowrap tw-font-serif tw-text-[19px] tw-font-medium tw-tracking-[-0.01em]">
-            {{ profile.name }} {{ profile.surname }}
-          </span>
-          <v-btn :icon="mdiClose" variant="text" color="primary" aria-label="Close menu" @click="open = false" />
-        </div>
 
         <nav
           class="tw-relative tw-z-[1] tw-flex tw-flex-1 tw-flex-col tw-justify-center tw-gap-0.5 tw-py-[18px]"
@@ -185,6 +178,8 @@ onUnmounted(() => {
 <style scoped>
 .appbar {
   border-bottom: 1px solid var(--rule) !important;
+  /* keep the real bar above the open menu panel (z-2400) so the brand stays put */
+  z-index: 2450 !important;
 }
 
 .brand {

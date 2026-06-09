@@ -4,13 +4,14 @@
   "languages": {
     "Vue.js": {
       "tab_size": 2,
-      "formatter": "language_server",
+      "formatter": "none",
       "code_actions_on_format": {
         "source.fixAll.eslint": true,
       },
     },
     "JavaScript": {
       "tab_size": 2,
+      "formatter": "none",
       "code_actions_on_format": {
         "source.fixAll.eslint": true,
       },

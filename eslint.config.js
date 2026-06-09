@@ -21,6 +21,9 @@ export default [
       "vue/singleline-html-element-content-newline": "off",
       "vue/attributes-order": "off",
       "vue/html-indent": "off",
+      "vue/html-closing-bracket-newline": "off",
+      "vue/first-attribute-linebreak": "off",
+      "vue/html-self-closing": "off",
     },
   },
 ];

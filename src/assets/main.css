@@ -67,23 +67,26 @@ html {
 :root {
   --frame: 880px;
   --dot-step: 22px;
+  --dot-fade: linear-gradient(#000 0, #000 700px, rgba(0, 0, 0, 0.4) 1400px);
   --mark: linear-gradient(var(--ink-soft), var(--ink-soft));
 }
 
-/* n8n-style dot canvas across the whole page: full strength behind the hero,
-   softer below so long text stays calm. Centred so a dot sits on the page
-   centre and therefore on both rails. */
-.v-main { position: relative; z-index: 1; }
-.v-main::before {
-  --dot-fade: linear-gradient(#000 0, #000 700px, rgba(0, 0, 0, 0.4) 1400px);
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+/* n8n-style dot canvas: full strength at the top, softer below so long text
+   stays calm. Centred so a dot sits on the page centre and therefore on both
+   rails. Drawn behind the page and reused by the mobile menu overlay. */
+.v-main::before,
+.dot-canvas {
   background: radial-gradient(var(--dot) 1.2px, transparent 1.6px) 50% 0 / var(--dot-step) var(--dot-step) repeat;
   -webkit-mask-image: var(--dot-fade);
   mask-image: var(--dot-fade);
   pointer-events: none;
+}
+.v-main { position: relative; z-index: 1; }
+.v-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
 
 .content { max-width: var(--frame); }
@@ -150,8 +153,8 @@ html {
    brackets and the "+" marks; keep dividers and tags, and let the dots fade
    out after the hero so they never sit behind body copy. */
 @media (max-width: 960px) {
+  :root { --dot-fade: linear-gradient(#000 0, #000 600px, transparent 1200px); }
   .v-main::before {
-    --dot-fade: linear-gradient(#000 0, #000 600px, transparent 1200px);
     bottom: auto;
     height: 1200px;
   }

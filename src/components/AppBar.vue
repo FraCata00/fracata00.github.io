@@ -128,11 +128,8 @@ onUnmounted(() => {
         aria-label="Menu"
         class="tw-fixed tw-inset-0 tw-z-[2400] tw-flex tw-flex-col tw-overflow-y-auto tw-bg-paper tw-px-4 tw-pt-[62px] tw-pb-[calc(26px+env(safe-area-inset-bottom))]"
       >
-        <!-- same faint engineering-paper grid as the page, faded from the top -->
-        <div
-          aria-hidden="true"
-          class="tw-pointer-events-none tw-absolute tw-inset-0 tw-z-0 tw-opacity-[0.14] tw-[background-size:46px_46px] tw-[background-image:linear-gradient(var(--rule)_1px,transparent_1px),linear-gradient(90deg,var(--rule)_1px,transparent_1px)] tw-[mask-image:radial-gradient(120%_80%_at_50%_0%,#000_30%,transparent_100%)] tw-[-webkit-mask-image:radial-gradient(120%_80%_at_50%_0%,#000_30%,transparent_100%)]"
-        />
+        <!-- same dot canvas as the page behind it -->
+        <div aria-hidden="true" class="dot-canvas tw-absolute tw-inset-0 tw-z-0" />
 
         <nav
           class="tw-relative tw-z-[1] tw-flex tw-flex-1 tw-flex-col tw-justify-center tw-gap-0.5 tw-py-[18px]"

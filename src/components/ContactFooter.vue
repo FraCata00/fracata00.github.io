@@ -28,7 +28,6 @@ import { contacts } from '../data/portfolio'
 <style scoped>
 .foot {
   padding: clamp(40px, 8vw, 62px) 0 clamp(56px, 10vw, 96px);
-  border-bottom: none;
 }
 
 .foot-title {

@@ -13,6 +13,7 @@
   --accent2:   #1f5c4a;
   --code-bg:   #2b2622;
   --code-fg:   #ebe4d6;
+  --dot:       rgba(35, 32, 27, 0.13);
   color-scheme: light;
 }
 
@@ -27,6 +28,7 @@
   --accent2:   #4da585;
   --code-bg:   #0f0e0c;
   --code-fg:   #ebe4d6;
+  --dot:       rgba(232, 226, 217, 0.1);
   color-scheme: dark;
 }
 
@@ -59,23 +61,104 @@ html {
   overflow-x: clip;
 }
 
-/* faint engineering-paper grid, faded out toward the bottom */
-.v-application::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--rule) 1px, transparent 1px),
-    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-  background-size: 46px 46px;
-  opacity: 0.16;
-  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 100%);
-  mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 100%);
+/* Blueprint frame. Geometry tokens: the page column width and the dot step.
+   The dots land on the rails because half the frame is a whole number of
+   steps (440 = 20 × 22). The 960px breakpoints below are --frame plus margin. */
+:root {
+  --frame: 880px;
+  --dot-step: 22px;
+  --mark: linear-gradient(var(--ink-soft), var(--ink-soft));
 }
+
+/* n8n-style dot canvas across the whole page: full strength behind the hero,
+   softer below so long text stays calm. Centred so a dot sits on the page
+   centre and therefore on both rails. */
 .v-main { position: relative; z-index: 1; }
-.content { max-width: 880px; }
+.v-main::before {
+  --dot-fade: linear-gradient(#000 0, #000 700px, rgba(0, 0, 0, 0.4) 1400px);
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(var(--dot) 1.2px, transparent 1.6px) 50% 0 / var(--dot-step) var(--dot-step) repeat;
+  -webkit-mask-image: var(--dot-fade);
+  mask-image: var(--dot-fade);
+  pointer-events: none;
+}
+
+.content { max-width: var(--frame); }
+
+/* The page column (App.vue) carries the rails as its own borders, closing
+   corner brackets at the bottom, and the section counter. */
+.page {
+  position: relative;
+  border-inline: 1px solid var(--rule);
+  counter-reset: sec;
+}
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background:
+    var(--mark) left bottom / 14px 1px no-repeat,
+    var(--mark) left bottom / 1px 14px no-repeat,
+    var(--mark) right bottom / 14px 1px no-repeat,
+    var(--mark) right bottom / 1px 14px no-repeat;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Every page block after the first gets a full-bleed divider on its top edge,
+   "+" marks where it crosses the rails, and a numbered tag: ┤ 01 ├.
+   A tile centred with `calc(50% ± frame/2)` lands on a rail at any width. */
+.page > * { position: relative; }
+.page > * + * { counter-increment: sec; }
+.page > * + *::before {
+  --divider-line: linear-gradient(90deg, transparent, var(--rule) 22%, var(--rule) 78%, transparent) center / 100% 1px no-repeat;
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 100vw;
+  height: 11px;
+  transform: translateX(-50%);
+  background:
+    var(--mark) calc(50% - var(--frame) / 2) center / 11px 1px no-repeat,
+    var(--mark) calc(50% - var(--frame) / 2) center / 1px 11px no-repeat,
+    var(--mark) calc(50% + var(--frame) / 2) center / 11px 1px no-repeat,
+    var(--mark) calc(50% + var(--frame) / 2) center / 1px 11px no-repeat,
+    var(--divider-line);
+  pointer-events: none;
+}
+.page > * + *::after {
+  content: '┤ ' counter(sec, decimal-leading-zero) ' ├';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 6px;
+  background: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+/* Below the frame width the rails would hug the viewport edge: drop them, the
+   brackets and the "+" marks; keep dividers and tags, and let the dots fade
+   out after the hero so they never sit behind body copy. */
+@media (max-width: 960px) {
+  .v-main::before {
+    --dot-fade: linear-gradient(#000 0, #000 600px, transparent 1200px);
+    bottom: auto;
+    height: 1200px;
+  }
+  .page { border-inline: none; }
+  .page::before { display: none; }
+  .page > * + *::before { background: var(--divider-line); }
+}
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -156,7 +239,7 @@ code {
 
 .lede { font-size: 20px; max-width: 60ch; color: var(--ink-soft); overflow-wrap: break-word; word-break: break-word; }
 
-section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+section { padding: 56px 0; }
 
 /* reveal-on-scroll (driven by the v-reveal directive) */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }

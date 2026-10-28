@@ -58,7 +58,7 @@ import undrawDeveloper from '../assets/undraw_developer.svg'
 </template>
 
 <style scoped>
-.hero { padding: clamp(28px, 8vw, 64px) 0 26px; border-bottom: 1px solid var(--rule); }
+.hero { padding: clamp(28px, 8vw, 64px) 0 26px; }
 
 .hero-title { font-size: clamp(28px, 7vw, 74px); margin-bottom: 22px; line-height: 1.08; }
 
